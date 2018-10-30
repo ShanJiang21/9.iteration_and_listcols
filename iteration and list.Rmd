@@ -200,5 +200,46 @@ weather_nest %>%
    pull()
 ```
 
+Unnesting...
+```{r}
+weather_nest %>% 
+  unnest
+```
 
+Look at the Lc elements 
+```{r}
+weather_nest$data[[1]] %>% 
+  skimr::skim()
+```
+
+
+Fit a location-specific regression...
+```{r}
+# linear model only for Central Park 
+lm(tmax ~ tmin, data =  weather_nest$data[[1]])
+lm(tmax ~ tmin, data =  weather_nest$data[[2]])
+```
+
+
+So how about write a function for completing the task?
+```{r}
+weather_lm = function(df){
+  lm(tmax ~ tmin, data = df)
+}
+# a handy way for readable code
+weather_lm(df = weather_nest$data[[1]])
+```
+
+```{r}
+# The results of lm 
+map(weather_nest$data, weather_lm)
+```
+
+Save the output in the new column which combines the name/id and analysis.
+```{r}
+weather_nest %>% 
+  mutate(lm_results = map(data, weather_lm))
+
+# we have not extract a coefficients and slopes 
+```
 
