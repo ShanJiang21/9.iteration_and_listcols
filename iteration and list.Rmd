@@ -82,3 +82,35 @@ for (i in 1:4) {
 output
 ```
 
+# Map Statements
+
+let's replace the `for` loop with `map`.
+
+```{r}
+# only apply to first three elements 
+df %>% 
+  select(a, b, c) %>% 
+  map(mean_and_sd)
+
+#apply to the whole dataframe 
+output = map(df, mean_and_sd)
+
+```
+
+Let's try a different function.
+```{r}
+# By using the summary
+output = map(df, summary)
+output 
+```
+
+## Map variant 
+```{r}
+# To produce a dataframe in the map function 
+output = map_df(df, mean_and_sd)
+output 
+# To specify the double one 
+output = map_dbl(df, mean_and_sd)
+```
+
+## Code Syntax 
