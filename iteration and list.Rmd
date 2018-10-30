@@ -1,0 +1,20 @@
+---
+title: "iteration_and_listcols"
+author: "Shan Jiang"
+date: "10/30/2018"
+output: github_document
+---
+* The **loop** basic structure in the course:
+input = list(...)
+      output = list(...)
+      for (i in 1:n) {
+            output[[i]] = f(input[[i]])
+}
+
+* The **map** basic structure:
+      output = map(input, f)
+* matrixs should be all of the same type of data(all numbers/ chracters)
+```{r}
+
+```
+
